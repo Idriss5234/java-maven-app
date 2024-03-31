@@ -2,8 +2,8 @@ pipeline {
     agent any
     tools{
         maven 'maven-3.9.6'
-        docker 'docker-my'
-    }
+        dockerTool 'docker-my'   
+         }
     stages {
         stage('Build jar') {
             steps {
@@ -33,7 +33,5 @@ pipeline {
             }
         }
     }
-    post{
-         
-    }
+   
 }

@@ -8,7 +8,7 @@ pipeline {
         stage('Build jar') {
             steps {
                 echo 'Building jar..'
-                sh'mvn pckage'
+                sh'mvn package'
             }
         }
          stage('Build image') {

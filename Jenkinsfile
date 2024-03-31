@@ -1,7 +1,8 @@
 pipeline {
     agent any
     tools{
-        maven 'Maven'
+        maven 'maven-3.9.6'
+        docker 'docker-my'
     }
     stages {
         stage('Build jar') {

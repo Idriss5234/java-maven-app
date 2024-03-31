@@ -1,38 +1,25 @@
-pipeline {
+pipeline{
     agent any
-    tools{
-        maven 'maven-3.9.6'
-        dockerTool 'docker-my'   
-         }
-    stages {
-        stage('Build jar') {
-            steps {
-                echo 'Building jar..'
-                sh'mvn package'
+    stages{
+        stage('test'){
+            steps{
+                echo 'testing the project...'
             }
         }
-         stage('Build image') {
-            steps {
-                echo 'Building docker image..'
-                withCredentials([usernamePassword(credentialsId: 'docker-cred', 
-                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'docker build -t idriss5234/demo-app:1.1 .'
-                    sh "docker login -u $USERNAME -p $PASSWORD"
-                    sh'docker push idriss5234/demo-app:1.1'
+        stage('build'){
+            when{
+                expression{
+                    BRANCH_NAME == 'main'
                 }
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-              //  mvn test
+            steps{
+                echo 'building the project...'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+        stage('Deploy'){
+            steps{
+                echo 'Deploying the project...'
             }
         }
     }
-   
 }

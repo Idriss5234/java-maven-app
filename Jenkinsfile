@@ -42,9 +42,10 @@ pipeline {
         stage('commit version update') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'github-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: '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')]) {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
+                        sh 'git checkout Jenkins-jobs'
                         sh 'git status'
                         sh 'git branch'
                         sh 'git config --list'
@@ -52,10 +53,12 @@ pipeline {
                         sh 'git add .'
                         sh 'git commit -m "Incrementing version from Jenkins"'
                         sh 'git push origin HEAD:Jenkins-jobs'
+                        sh "git config --global user.email"
                     }
                 }
             }
 }
+
 
         stage('Deploy') {
             steps {

@@ -33,7 +33,7 @@ pipeline {
                     echo 'Dockerizing the project...'
                     withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh "docker login -u $USERNAME -p $PASSWORD"
-                        sh "docker build -t my-app:$IMAGE_VERSION ."
+                        sh "docker build -t idriss5234/my-app:$IMAGE_VERSION ."
                         sh "docker push idriss5234/my-app:$IMAGE_VERSION"
                     }
                 }

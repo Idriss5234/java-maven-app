@@ -42,7 +42,7 @@ pipeline {
         stage('commit version update') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'github-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: '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')]) {
+                    withCredentials([usernamePassword(credentialsId: '7257e0d1-5d9f-427e-ad09-929ed6550ea7', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
                         sh 'git checkout Jenkins-jobs'

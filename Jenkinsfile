@@ -12,11 +12,13 @@ pipeline{
         }
         stage('increment version'){
             steps{
-                echo 'Incementing the image...'
-                sh 'mvn build-helper:parse-version versions:set -DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion} versions:commit'
-                def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
-                def version = matcher[0][1]
-                env.IMAGE_VERSION = "$version-$BUILD_NUMBER"
+                script{
+                    echo 'Incementing the image...'
+                    sh 'mvn build-helper:parse-version versions:set -DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion} versions:commit'
+                    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+                    def version = matcher[0][1]
+                    env.IMAGE_VERSION = "$version-$BUILD_NUMBER"
+                }
 
             }
         }
@@ -28,6 +30,7 @@ pipeline{
         }
         stage('Dockerize'){
             steps{
+                script{
                 echo 'Dockerizing the project...'
                 withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                     sh 'docker login -u $USERNAME -p $PASSWORD'
@@ -35,6 +38,7 @@ pipeline{
                     sh 'docker push idriss5234/my-app:$IMAGE_VERSION'
                 }
             }
+        }
         }
         stage('Deploy'){
             steps{

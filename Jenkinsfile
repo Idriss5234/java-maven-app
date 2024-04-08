@@ -45,7 +45,6 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'pat-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
-                        sh 'git checkout Jenkins-jobs'
                         sh 'git status'
                         sh 'git branch'
                         sh 'git config --list'

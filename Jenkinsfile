@@ -45,7 +45,6 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'github-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) 
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
-
                         sh 'git status'
                         sh 'git branch'
                         sh 'git config --list'
@@ -55,6 +54,7 @@ pipeline {
                         sh 'git push --set-upstream HEAD:Jenkins-jobs'
                         sh "git config --global user.email"
                }
+        }
         }
         stage('Deploy') {
             steps {

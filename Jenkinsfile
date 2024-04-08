@@ -17,7 +17,7 @@ pipeline {
                     sh "mvn build-helper:parse-version versions:set -DnewVersion=\\\$\\{parsedVersion.majorVersion\\}.\\\$\\{parsedVersion.minorVersion\\}.\\\$\\{parsedVersion.nextIncrementalVersion\\} versions:commit"
                     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def version = matcher[0][1]
-                    env.IMAGE_VERSION = "${version}-${BUILD_NUMBER}"
+                    env.IMAGE_VERSION = "${version}"
                 }
             }
         }
@@ -33,8 +33,8 @@ pipeline {
                     echo 'Dockerizing the project...'
                     withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh "docker login -u $USERNAME -p $PASSWORD"
-                        sh "docker build -t my-app:${env.IMAGE_VERSION} ."
-                        sh "docker push idriss5234/my-app:${env.IMAGE_VERSION}"
+                        sh "docker build -t my-app:$IMAGE_VERSION ."
+                        sh "docker push idriss5234/my-app:$IMAGE_VERSION"
                     }
                 }
             }

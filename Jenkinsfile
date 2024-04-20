@@ -69,7 +69,7 @@ pipeline {
                      echo 'deploying docker image to ec2...'
                      def dockerCMD="docker run -d -p 8080:8080 idriss5234/my-app:$IMAGE_VERSION"        
                      sshagent(['ec2-cred']) {
-                           sh "ssh -o StrictHostKeyChecking=no ubuntu@ip-172-31-20-90 ${dockerCMD}"
+                           sh "ssh -o StrictHostKeyChecking=no ubuntu@ec2-16-171-47-234.eu-north-1.compute.amazonaws.com ${dockerCMD}"
                         }
                  }
             }

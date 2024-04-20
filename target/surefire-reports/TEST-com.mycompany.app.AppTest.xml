@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mycompany.app.AppTest" time="0.088" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mycompany.app.AppTest" time="0.037" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -11,7 +11,7 @@
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/opt/java/openjdk/lib"/>
-    <property name="sun.java.command" value="/var/jenkins_home/workspace/my-pipeline/target/surefire/surefirebooter4396518748313592399.jar /var/jenkins_home/workspace/my-pipeline/target/surefire 2024-04-08T15-59-54_692-jvmRun1 surefire5494294634534099231tmp surefire_04908211828993733817tmp"/>
+    <property name="sun.java.command" value="/var/jenkins_home/workspace/my-pipeline/target/surefire/surefirebooter14568706688697744048.jar /var/jenkins_home/workspace/my-pipeline/target/surefire 2024-04-20T13-07-52_886-jvmRun1 surefire11117358548451100790tmp surefire_013511957049287674835tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/var/jenkins_home/workspace/my-pipeline/target/test-classes:/var/jenkins_home/workspace/my-pipeline/target/classes:/var/jenkins_home/.m2/repository/junit/junit/4.11/junit-4.11.jar:/var/jenkins_home/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -26,7 +26,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/var/jenkins_home/workspace/my-pipeline/target/surefire/surefirebooter4396518748313592399.jar"/>
+    <property name="surefire.real.class.path" value="/var/jenkins_home/workspace/my-pipeline/target/surefire/surefirebooter14568706688697744048.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.10+7"/>
     <property name="user.name" value="jenkins"/>
@@ -51,5 +51,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.mycompany.app.AppTest" time="0.002"/>
+  <testcase name="shouldAnswerWithTrue" classname="com.mycompany.app.AppTest" time="0.001"/>
 </testsuite>

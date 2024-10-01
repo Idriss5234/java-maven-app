@@ -53,7 +53,6 @@ pipeline {
                         sh 'git branch'
                         sh 'git config --list'
                         sh 'git remote set-url origin https://$GIT_USERNAME:${GIT_PASSWORD}@github.com/Idriss5234/java-maven-app.git'
-                        git push origin HEAD:Jenkins-jobs
                         sh 'git add .'
                         sh 'git commit -m "Incrementing version from Jenkins"'
                         sh 'git push origin HEAD:Jenkins-jobs'

@@ -45,19 +45,20 @@ pipeline {
         stage('commit version update') {
             steps {
                 script {
-                    echo 'Committing the version update...'
-                    withCredentials([usernamePassword(credentialsId: 'pat-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                        sh 'git config --global user.email "jenkins@example.com"'
-                        sh 'git config --global user.name "jenkins"'
-                        sh 'git status'
-                        sh 'git branch'
-                        sh 'git config --list'
-                        sh 'git remote set-url origin https://$GIT_USERNAME:${GIT_PASSWORD}@github.com/Idriss5234/java-maven-app.git'
-                        git push origin HEAD:Jenkins-jobs
-                        sh 'git add .'
-                        sh 'git commit -m "Incrementing version from Jenkins"'
-                        sh 'git push origin HEAD:Jenkins-jobs'
-                        sh "git config --global user.email" 
+                   echo 'Committing the version update...'
+            withCredentials([usernamePassword(credentialsId: 'pat-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                sh 'git config --global user.email "jenkins@example.com"'
+                sh 'git config --global user.name "jenkins"'
+                sh 'git remote set-url origin https://$GIT_USERNAME:${GIT_PASSWORD}@github.com/Idriss5234/java-maven-app.git'
+
+                // Add files to staging
+                sh 'git add .'
+                
+                // Commit the changes
+                sh 'git commit -m "Incrementing version from Jenkins"'
+                
+                // Push to the specific branch
+                sh 'git push origin HEAD:Jenkins-jobs'
                     }
                 }
             }

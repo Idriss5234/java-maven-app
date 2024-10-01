@@ -53,9 +53,8 @@ pipeline {
                         sh 'git branch'
                         sh 'git config --list'
                         sh 'git remote set-url origin https://$GIT_USERNAME:${GIT_PASSWORD}@github.com/Idriss5234/java-maven-app.git'
-                        git lfs install
-
-                        git lfs track "terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/*"
+                       
+                       
 
                         git add .gitattributes
                         git commit -m "Track large Terraform files with Git LFS"

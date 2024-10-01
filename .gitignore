@@ -7,3 +7,8 @@
 *.log
 *.bak
 *.tmp
+
+
+
+
+# to fix large files in github push

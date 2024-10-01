@@ -62,14 +62,39 @@ pipeline {
             }
 }
 
+stage('provision server'){
+    environment{
+              AWS_CREDENTIALS = credentials('jenkins-aws-acces-key')
+              TF_VAR_env_prefix="test"  //override the default value
 
+    }
+    steps{
+        script{
+            dir('terraform'){
+                sh 'terraform init'
+                sh 'terraform apply -auto-approve'
+                EC2_PUBLIC_IP=sh(
+                    script: "terraform output ec2-public-ip",
+                    returnStdout: true
+                ).trim() 
+            }
+        }
+    }
+}
+
+ 
         stage('Deploy') {
             steps {
                  script{
+                    echo"waiting for the ec2 instance to be ready..."
+                    sleep(90) //wait for the ec2 instance to be ready
+
                      echo 'deploying docker image to ec2...'
-                     def dockerCMD="docker run -d -p 8080:8080 idriss5234/my-app:$IMAGE_VERSION"        
+                     def dockerCMD="docker run -d -p 8080:8080 idriss5234/my-app:$IMAGE_VERSION"  
+
                      sshagent(['ec2-cred']) {
-                           sh "ssh -o StrictHostKeyChecking=no ubuntu@ec2-16-171-47-234.eu-north-1.compute.amazonaws.com ${dockerCMD}"
+                          // sh "ssh -o StrictHostKeyChecking=no ubuntu@ec2-16-171-47-234.eu-north-1.compute.amazonaws.com ${dockerCMD}"
+                            sh "ssh -o StrictHostKeyChecking=no ec2-user@${EC2_PUBLIC_IP} ${dockerCMD}"
                         }
                  }
             }

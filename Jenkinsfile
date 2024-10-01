@@ -92,7 +92,7 @@ stage('provision server'){
                      echo 'deploying docker image to ec2...'
                      def dockerCMD="docker run -d -p 8080:8080 idriss5234/my-app:$IMAGE_VERSION"  
 
-                     sshagent(['ec2-cred']) {
+                     sshagent(['ansible_terraform']) {
                           // sh "ssh -o StrictHostKeyChecking=no ubuntu@ec2-16-171-47-234.eu-north-1.compute.amazonaws.com ${dockerCMD}"
                             sh "ssh -o StrictHostKeyChecking=no ec2-user@${EC2_PUBLIC_IP} ${dockerCMD}"
                         }

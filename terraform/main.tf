@@ -111,7 +111,7 @@ resource "aws_instance" "my-app-server"{
     vpc_security_group_ids=[aws_default_security_group.default-sg.id]
     associate_public_ip_address=true
 
-    key_name="server-key"
+    key_name="ansible_terraform"
 
     tags={
         name="${var.env_prefix}-server"

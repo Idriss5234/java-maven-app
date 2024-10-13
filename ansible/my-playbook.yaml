@@ -1,0 +1,20 @@
+- name: Install Python 3, Docker & Docker Compose
+  hosts: all
+  become: true
+  vars:
+    - ansible_interpreter_python: /usr/bin/python
+  tasks:
+    - name: Install Python 3, pip, and Docker
+      yum:
+        name:
+          - python3
+          - python3-pip
+          - docker
+        update_cache: yes
+        state: present
+
+    - name: Install Docker Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-{{ ansible_architecture }}"
+        dest: /usr/local/bin/docker-compose
+        mode: "0755" # Correct mode for executable files
